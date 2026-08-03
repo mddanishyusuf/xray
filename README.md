@@ -6,7 +6,8 @@ It works by reading the data X already loads on the page — no API keys, no ext
 
 ## Features
 
-- Follower count next to every profile (timeline, quotes, reposts, detail view)
+- Follower count next to every profile (timeline, quotes, reposts, detail view,
+  follower/following lists, and "Who to follow")
 - "New account" badge for accounts younger than a threshold you pick
 - "Follows you" badge
 - Compact (`1.2K`) or full (`1.2K followers`) display

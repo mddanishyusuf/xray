@@ -150,8 +150,11 @@ export default defineContentScript({
     // ---------------------------------------------------------------------
     const resolved = new WeakMap<HTMLElement, { host: HTMLElement; handle: string }>();
 
-    function renderHost(host: HTMLElement, info: UserInfo, fontSize: string) {
-      // --- followers ---
+    function renderFollowers(
+      host: HTMLElement,
+      info: UserInfo,
+      fontSize: string,
+    ) {
       if (info.followers !== undefined) {
         let badge = host.querySelector<HTMLElement>('.xray-followers');
         if (!badge) {
@@ -173,6 +176,11 @@ export default defineContentScript({
           badge.title = `${info.followers.toLocaleString()} followers`;
         }
       }
+    }
+
+    function renderHost(host: HTMLElement, info: UserInfo, fontSize: string) {
+      // --- followers ---
+      renderFollowers(host, info, fontSize);
 
       // --- new account ---
       const isNew =
@@ -283,9 +291,31 @@ export default defineContentScript({
       }
     }
 
+    // User cards in follower/following lists and the "Who to follow" module.
+    // Both surfaces use UserCell, even though one is a button and the other a
+    // list item. Render only the follower count here because X can already
+    // include its own "Follows you" indicator inside these cards.
+    function injectUserCells() {
+      const cells = document.querySelectorAll<HTMLElement>(
+        '[data-testid="UserCell"]',
+      );
+      for (const cell of cells) {
+        let entry = resolved.get(cell);
+        if (!entry) {
+          const parts = findHandleParts(cell);
+          if (!parts) continue;
+          entry = parts;
+          resolved.set(cell, entry);
+        }
+        const info = users.get(entry.handle.toLowerCase());
+        if (info) renderFollowers(entry.host, info, '15px');
+      }
+    }
+
     function injectBadges() {
       injectNames();
       injectReposts();
+      injectUserCells();
     }
 
     let scheduled = false;
