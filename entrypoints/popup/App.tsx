@@ -141,6 +141,27 @@ function App() {
         />
       </div>
 
+      <div className="personal-notes-tip">
+        <svg
+          viewBox="0 0 24 24"
+          width="17"
+          height="17"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M20 13 13 20l-9-9V4h7l9 9Z" />
+          <circle cx="8.5" cy="8.5" r="1" fill="currentColor" stroke="none" />
+        </svg>
+        <div className="row-text">
+          <span className="field-label">Personal tags &amp; notes</span>
+          <span className="hint">Click any XRay follower count to add one</span>
+        </div>
+      </div>
+
       <hr className="divider" />
 
       <footer className="footer">

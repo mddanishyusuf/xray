@@ -10,6 +10,7 @@ It works by reading the data X already loads on the page — no API keys, no ext
   follower/following lists, and "Who to follow")
 - "New account" badge for accounts younger than a threshold you pick
 - "Follows you" badge
+- Private personal tags and notes, stored only in the browser
 - Compact (`1.2K`) or full (`1.2K followers`) display
 - Light/dark theme aware
 

@@ -37,3 +37,17 @@ export const followsYouEnabledItem = storage.defineItem<boolean>(
   'local:followsYouEnabled',
   { fallback: false },
 );
+
+export interface PersonalProfile {
+  tags: string[];
+  note: string;
+  updatedAt: number;
+}
+
+export type PersonalProfiles = Record<string, PersonalProfile>;
+
+/** Private tags and notes, keyed by lowercased screen name. */
+export const personalProfilesItem = storage.defineItem<PersonalProfiles>(
+  'local:personalProfiles',
+  { fallback: {} },
+);

@@ -73,6 +73,23 @@ hr.divider {
   gap: 2px;
 }
 
+.personal-notes-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 11px 12px;
+  border-radius: 10px;
+  color: var(--fg);
+  background: var(--surface);
+}
+
+.personal-notes-tip > svg {
+  flex: none;
+  margin-top: 1px;
+  color: var(--accent);
+}
+
 /* Segmented control */
 .segmented {
   display: flex;
